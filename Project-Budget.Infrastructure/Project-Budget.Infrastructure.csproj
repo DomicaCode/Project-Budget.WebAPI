@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Project_Budget.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project-Budget.Repository\Project-Budget.Repository.csproj" />
+    <ProjectReference Include="..\Project-Budget.Service\Project-Budget.Service.csproj" />
+  </ItemGroup>
+
+</Project>
