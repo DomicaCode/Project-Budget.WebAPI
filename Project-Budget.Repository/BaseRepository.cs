@@ -18,7 +18,7 @@ namespace Project_Budget.Repository
         private readonly BudgetContext _context;
 
 
-        protected BaseRepository(BudgetContext context, IMapper mapper)
+        public BaseRepository(BudgetContext context, IMapper mapper)
         {
             Mapper = mapper;
             _context = context;

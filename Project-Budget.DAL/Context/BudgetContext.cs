@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project_Budget.Model.Models;
 using Project_Budget.Model.Models.Membership;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace Project_Budget.DAL.Context
         {
         }
         public DbSet<User> User { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }

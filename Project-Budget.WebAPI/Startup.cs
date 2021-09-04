@@ -102,9 +102,9 @@ namespace Project_Budget.WebAPI
                 endpoints.MapControllers();
             });
 
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
-            //context.Database.Migrate();
+            context.Database.Migrate();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
