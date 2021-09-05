@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project_Budget.Common;
+using Project_Budget.Common.Filters;
 using Project_Budget.Model.Models;
 using Project_Budget.Service.Services;
 using Project_Budget.WebAPI.Controllers.Base;
@@ -38,12 +40,38 @@ namespace Project_Budget.WebAPI.Controllers
             }
 
             var mappedModel = Mapper.Map<Category>(model);
+            mappedModel.UserId = GetUserId();
 
             if (await CategoryService.AddAsync(mappedModel))
             {
                 return Ok(new { success = true });
             }
             return BadRequest(new { success = false });
+        }
+
+        [HttpGet]
+        [Route("")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await CategoryService.GetAllAsync(GetUserId()).ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+            if (id == default)
+            {
+                throw new ArgumentException("Id wrong", nameof(id));
+            }
+
+            var result = await CategoryService.GetAsync(new CategoryFilter { Id = id, UserId = GetUserId() });
+
+            return Ok(result);
         }
 
         [HttpDelete]

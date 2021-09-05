@@ -74,7 +74,10 @@ namespace Project_Budget.Repository
         {
             if (filter.Id != null)
             {
-                return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id).ConfigureAwait(false);
+                return await DbSet
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == filter.Id)
+                    .ConfigureAwait(false);
             }
 
             return null;

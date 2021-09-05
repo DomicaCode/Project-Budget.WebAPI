@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 namespace Project_Budget.WebAPI.Controllers.Base
@@ -21,14 +22,14 @@ namespace Project_Budget.WebAPI.Controllers.Base
 
         #region Methods
 
-        protected string GetUserId()
+        protected Guid GetUserId()
         {
             if (HttpContext.User == null)
             {
-                return string.Empty;
+                return Guid.Empty;
             }
 
-            return HttpContext.User.Claims.Single(x => x.Type == "userId").Value;
+            return Guid.Parse(HttpContext.User.Claims.Single(x => x.Type == "userId").Value);
         }
 
         #endregion Methods

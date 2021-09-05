@@ -1,4 +1,5 @@
 ﻿using Project_Budget.Common;
+using Project_Budget.Common.Filters;
 using Project_Budget.Model.Models;
 using Project_Budget.Repository.Repositories;
 using System;
@@ -35,15 +36,19 @@ namespace Project_Budget.Service.Services
             return await CategoryRepository.EditAsync(model);
         }
 
-
-        public async Task<IList<Category>> GetAllAsync()
+        public async Task<IList<Category>> GetAllAsync(Guid userId)
         {
-            return await CategoryRepository.GetAllAsync();
+            var filter = new CategoryFilter
+            {
+                UserId = userId
+            };
+
+            return await CategoryRepository.GetAllAsync(filter);
         }
 
-        public async Task<Category> GetAsync(GenericFilter filter)
+        public async Task<Category> GetAsync(CategoryFilter filter)
         {
-            return await CategoryRepository.GetAsync(filter);
+            return await CategoryRepository.GetAsync(filter).ConfigureAwait(false);
         }
     }
 }

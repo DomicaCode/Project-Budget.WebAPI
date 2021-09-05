@@ -1,4 +1,5 @@
 ﻿using Project_Budget.Common;
+using Project_Budget.Common.Filters;
 using Project_Budget.Model.Models;
 using Project_Budget.Repository.Repositories;
 using System;
@@ -12,7 +13,7 @@ namespace Project_Budget.Service.Services
         Task<bool> AddAsync(Category model);
         Task<bool> DeleteAsync(Guid foodId);
         Task<bool> EditAsync(Category model);
-        Task<IList<Category>> GetAllAsync();
-        Task<Category> GetAsync(GenericFilter filter);
+        Task<IList<Category>> GetAllAsync(Guid userId);
+        Task<Category> GetAsync(CategoryFilter filter);
     }
 }
