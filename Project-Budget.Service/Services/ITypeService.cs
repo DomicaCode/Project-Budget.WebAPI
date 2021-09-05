@@ -8,12 +8,10 @@ namespace Project_Budget.Service.Services
 {
     public interface ITypeService
     {
-        ITypeRepository TypeRepository { get; }
-
         Task<bool> AddAsync(Model.Models.Type model);
         Task<bool> DeleteAsync(Guid foodId);
         Task<bool> EditAsync(Model.Models.Type model);
-        Task<IList<Model.Models.Type>> GetAllAsync();
-        Task<Model.Models.Type> GetAsync(GenericFilter filter);
+        Task<IList<Model.Models.Type>> GetAllAsync(ExtendedFilter filter);
+        Task<Model.Models.Type> GetAsync(ExtendedFilter filter);
     }
 }

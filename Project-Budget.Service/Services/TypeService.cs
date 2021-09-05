@@ -36,13 +36,13 @@ namespace Project_Budget.Service.Services
             return await TypeRepository.EditAsync(model).ConfigureAwait(false);
         }
 
-        public async Task<IList<Model.Models.Type>> GetAllAsync()
+        public async Task<IList<Model.Models.Type>> GetAllAsync(ExtendedFilter filter)
         {
 
-            return await TypeRepository.GetAllAsync().ConfigureAwait(false);
+            return await TypeRepository.GetAllAsync(filter).ConfigureAwait(false);
         }
 
-        public async Task<Model.Models.Type> GetAsync(GenericFilter filter)
+        public async Task<Model.Models.Type> GetAsync(ExtendedFilter filter)
         {
             return await TypeRepository
                 .GetAsync(filter)

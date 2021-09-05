@@ -3,15 +3,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project_Budget.Common;
-using Project_Budget.Common.Filters;
-using Project_Budget.Model.Models;
 using Project_Budget.Service.Services;
 using Project_Budget.WebAPI.Controllers.Base;
 using Project_Budget.WebAPI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Project_Budget.WebAPI.Controllers
@@ -40,6 +35,7 @@ namespace Project_Budget.WebAPI.Controllers
             }
 
             var mappedModel = Mapper.Map<Model.Models.Type>(model);
+            mappedModel.UserId = GetUserId();
 
             if (await TypeService.AddAsync(mappedModel))
             {
@@ -53,7 +49,7 @@ namespace Project_Budget.WebAPI.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> GetAll()
         {
-            var result = await TypeService.GetAllAsync().ConfigureAwait(false);
+            var result = await TypeService.GetAllAsync(new ExtendedFilter { UserId = GetUserId() }).ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -68,7 +64,7 @@ namespace Project_Budget.WebAPI.Controllers
                 throw new ArgumentException("Id wrong", nameof(id));
             }
 
-            var result = await TypeService.GetAsync(new GenericFilter { Id = id });
+            var result = await TypeService.GetAsync(new ExtendedFilter { Id = id, UserId = GetUserId() });
 
             return Ok(result);
         }
