@@ -22,12 +22,14 @@ namespace Project_Budget.Infrastructure
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
             builder.RegisterType<TypeRepository>().As<ITypeRepository>();
+            builder.RegisterType<EntryRepository>().As<IEntryRepository>();
 
             builder.RegisterType<LoginService>().As<ILoginService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<CategoryService>().As<ICategoryService>();
             builder.RegisterType<TypeService>().As<ITypeService>();
+            builder.RegisterType<EntryService>().As<IEntryService>();
         }
     }
 }

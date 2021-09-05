@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Project_Budget.Common;
-using Project_Budget.Common.Filters;
 using Project_Budget.DAL.Context;
 using Project_Budget.Model.Models;
 using System;
@@ -12,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Project_Budget.Repository.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category, CategoryFilter>, ICategoryRepository
+    public class EntryRepository : BaseRepository<Entry, ExtendedFilter>, IEntryRepository
     {
-        public CategoryRepository(BudgetContext context, IMapper mapper) : base(context, mapper)
+        public EntryRepository(BudgetContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public async Task<IList<Category>> GetAllAsync(CategoryFilter filter)
+        public async Task<IList<Entry>> GetAllAsync(ExtendedFilter filter)
         {
             return await DbSet
                 .Where(x => x.UserId == filter.UserId)
@@ -26,7 +25,7 @@ namespace Project_Budget.Repository.Repositories
                 .ConfigureAwait(false);
         }
 
-        public override async Task<Category> GetAsync(CategoryFilter filter)
+        public override async Task<Entry> GetAsync(ExtendedFilter filter)
         {
             if (filter.Id != null)
             {
@@ -40,4 +39,3 @@ namespace Project_Budget.Repository.Repositories
         }
     }
 }
-

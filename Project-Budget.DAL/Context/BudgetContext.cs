@@ -17,6 +17,8 @@ namespace Project_Budget.DAL.Context
         }
         public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
-        public DbSet<Type> Type{ get; set; }
+        public DbSet<Type> Type { get; set; }
+
+        public DbSet<Entry> Entry { get; set; }
     }
 }
