@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_Budget.Repository.Repositories
 {
-    public interface ICategoryRepository : IBaseRepository<Category, GenericFilter>
+    public interface ICategoryRepository : IBaseRepository<Category, CategoryFilter>
     {
         Task<IList<Category>> GetAllAsync(CategoryFilter filter);
         Task<Category> GetAsync(CategoryFilter filter);

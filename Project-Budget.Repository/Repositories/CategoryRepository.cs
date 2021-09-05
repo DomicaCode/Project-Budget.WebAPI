@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Project_Budget.Repository.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category, GenericFilter>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category, CategoryFilter>, ICategoryRepository
     {
         public CategoryRepository(BudgetContext context, IMapper mapper) : base(context, mapper)
         {

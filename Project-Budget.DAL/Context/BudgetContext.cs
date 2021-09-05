@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Type = Project_Budget.Model.Models.Type;
 
 namespace Project_Budget.DAL.Context
 {
@@ -16,5 +17,6 @@ namespace Project_Budget.DAL.Context
         }
         public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Type> Type{ get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace Project_Budget.WebAPI.Models
         {
             CreateMap<User, RegistrationViewModel>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
+            CreateMap<Type, TypeViewModel>().ReverseMap();
         }
 
         #endregion Constructors
